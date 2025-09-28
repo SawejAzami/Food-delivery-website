@@ -1,0 +1,16 @@
+
+.navbar-profile:hover .navbar-profile-dropdown{
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+    background-color: #fff2ef;
+    border-radius: 4px;
+    padding: 10px;
+    padding-right: 40px ;
+    border: 1px solid tomato;
+    outline: 2px solid white;
+    list-style: none;
+}
+.navbar-profile-dropdown li:hover{
+    color: tomato;
+}
