@@ -6,7 +6,9 @@ import { useEffect } from "react";
 import { assets } from "../../assets/assets";
 
 function Orders(){
-    const url="http://localhost:4000"
+    // const url="http://localhost:4000"
+    
+    const url = "https://food-delivery-website-pp1o.onrender.com";
     const [orders,setOrders]=useState([]);
     const fetchAllOrders=async()=>{
         const response=await axios.get(url+"/api/order/list")

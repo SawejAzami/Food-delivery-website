@@ -12,7 +12,10 @@ function Add(){
         price:"",
         category:"Salad"
     })
-    const url="http://localhost:4000"
+    // const url="http://localhost:4000"
+    
+    const url = "https://food-delivery-website-pp1o.onrender.com";
+    
     const onchangeHandle=(e)=>{
         const name=e.target.name;
         const value=e.target.value;
