@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+body{
+  min-height: 100vh;
+  background-color: #cfcfcf;
+}
+a{
+  text-decoration: none;
+  color:inherit;
+}
+hr{
+  border:none;
+  height:1px;
+  background-color: #a9a9a9;
+}
