@@ -11,9 +11,10 @@ function ExploreMenu({category,setCategory}){
         >
           <h1 className="text-[#262626] font-bold">Explore our menu</h1>
           <p className="max-w-[60%] ">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi
-            cumque non, modi doloremque at voluptate dicta quis veritatis eum
-            necessitatibus.
+            Discover a variety of freshly prepared dishes, from light salads to
+            indulgent desserts, crafted to satisfy every craving. A perfect
+            blend of taste and variety — explore our menu and find your favorite
+            dish today
           </p>
           <div className="flex items-center gap-6 my-5 overflow-x-auto scrollbar-hide scroll-smooth">
             {menu_list.map((item, index) => (

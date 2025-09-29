@@ -23,7 +23,7 @@ function Navbar({setShowLogin}){
     return (
       <>
         <div className="flex w-[80%] m-auto justify-between items-center mt-8">
-          <img className="w-[150px]" src={assets.logo} alt="Logo name" />
+          <img className="w-[50px]" src="../public/tastyhub1.png" alt="Logo name" />
 
           <ul className="flex gap-3 ">
             {/* {links.map((link) => (

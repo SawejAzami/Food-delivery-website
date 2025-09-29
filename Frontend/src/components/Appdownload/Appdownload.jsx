@@ -6,7 +6,7 @@ function AppDownload(){
       <>
         <div id="mobile-app" className="m-auto mt-[100px] text-2xl text-center font-bold ">
           <p>
-            For Better Experience Download <br /> Tomato App
+            For Better Experience Download <br /> TastyHub App
           </p>
           <div className="flex justify-center gap-2 m-[40px] cursor-pointer">
             <img className=" " src={assets.play_store} alt="" />
