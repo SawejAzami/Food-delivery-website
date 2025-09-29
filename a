@@ -1,0 +1,35 @@
+[33mcommit 7ca37142d26117dbed997650f8517106b90eeb8e[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: SawejAzami <10022002sa@gmail.com>
+Date:   Mon Sep 29 19:17:10 2025 +0530
+
+    removing .env file
+
+[33mcommit 07e747fad66612d65a727aaafd2a48d98f51573e[m
+Author: SawejAzami <10022002sa@gmail.com>
+Date:   Sun Sep 28 23:03:07 2025 +0530
+
+    adding url
+
+[33mcommit c8e1115d9085c90b1ba805734a320a09ab636d37[m
+Author: SawejAzami <10022002sa@gmail.com>
+Date:   Sun Sep 28 22:59:22 2025 +0530
+
+    adding admin page
+
+[33mcommit 92ad99aca8ca73550ff1107e4a6fe4221b4d8d5b[m
+Author: SawejAzami <10022002sa@gmail.com>
+Date:   Sun Sep 28 22:49:07 2025 +0530
+
+    adding frontend page
+
+[33mcommit ab4eb3985f6ff860cb1c4bed5c0669000e91b6b9[m
+Author: SawejAzami <10022002sa@gmail.com>
+Date:   Sun Sep 28 22:40:57 2025 +0530
+
+    adding port number
+
+[33mcommit 93d62d4fc0efdce8749ae5365b4fe6b6da2a8794[m
+Author: SawejAzami <10022002sa@gmail.com>
+Date:   Sun Sep 28 22:38:09 2025 +0530
+
+    first commit
