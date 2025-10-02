@@ -10,7 +10,7 @@ function Header(){
           <div className="absolute inset-3 bg-black/60"></div>
 
           
-          <div className="animate-fadeIn w-1/2 flex flex-col items-start gap-5 absolute bottom-[20%] left-[6vw] z-10">
+          <div className="animate-fadeIn w-1/2 flex flex-col items-start gap-5 absolute bottom-[20%] left-[6vw] z-0">
             <h2 className="font-extrabold text-white text-6xl">
               Order your favorite food here
             </h2>

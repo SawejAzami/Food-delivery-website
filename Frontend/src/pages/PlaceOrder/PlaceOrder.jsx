@@ -31,7 +31,13 @@ function PlaceOrder(){
         [name]:value
       }))
     }
+   
     const navigate=useNavigate();
+     function goToOrder(response) {
+      if (response.data.success) {
+        navigate("/myorders");
+      }
+    }
     useEffect(()=>{
       if(!token){
         navigate('/cart')
@@ -61,6 +67,7 @@ function PlaceOrder(){
         // const {session_url}=response.data;
         // window.location.replace(session_url);
         // console.log(response)
+        goToOrder(response)
       }else{
         
         alert("Error in Order placing");
@@ -71,7 +78,11 @@ function PlaceOrder(){
     return (
       <>
         <div className="">
-          <form onSubmit={placeOrder} className="px-10 flex   justify-between  mt-[100px] " action="">
+          <form
+            onSubmit={placeOrder}
+            className="px-10 flex   justify-between  mt-[100px] "
+            action=""
+          >
             <div className="w-[100%] max-w-[50%] ">
               <p className="text-2xl font-bold ">Delivery Information</p>
               <div className="flex gap-5">
@@ -85,7 +96,7 @@ function PlaceOrder(){
                   placeholder="First name"
                 />
                 <input
-                required
+                  required
                   name="lastName"
                   onChange={onChangeHadler}
                   value={data.lastName}
@@ -95,7 +106,7 @@ function PlaceOrder(){
                 />
               </div>
               <input
-              required
+                required
                 name="email"
                 onChange={onChangeHadler}
                 value={data.email}
@@ -104,7 +115,7 @@ function PlaceOrder(){
                 placeholder="Email address"
               />
               <input
-              required
+                required
                 name="street"
                 onChange={onChangeHadler}
                 value={data.street}
@@ -114,7 +125,7 @@ function PlaceOrder(){
               />
               <div className="flex gap-5">
                 <input
-                required
+                  required
                   name="city"
                   onChange={onChangeHadler}
                   value={data.city}
@@ -123,7 +134,7 @@ function PlaceOrder(){
                   placeholder="City"
                 />
                 <input
-                required
+                  required
                   name="state"
                   onChange={onChangeHadler}
                   value={data.state}
@@ -134,7 +145,7 @@ function PlaceOrder(){
               </div>
               <div className="flex gap-5">
                 <input
-                required
+                  required
                   name="zipcode"
                   onChange={onChangeHadler}
                   value={data.zipcode}
@@ -143,7 +154,7 @@ function PlaceOrder(){
                   placeholder="Zip code"
                 />
                 <input
-                required
+                  required
                   name="country"
                   onChange={onChangeHadler}
                   value={data.country}
@@ -153,7 +164,7 @@ function PlaceOrder(){
                 />
               </div>
               <input
-              required
+                required
                 name="phone"
                 onChange={onChangeHadler}
                 value={data.phone}
@@ -187,9 +198,10 @@ function PlaceOrder(){
                     </p>
                   </div>
                 </div>
-                <button 
-                type="submit"
-                className="border-none text-white bg-orange-600 py-[12px] rounded cursor-pointer  ">
+                <button
+                  type="submit"
+                  className="border-none text-white bg-orange-600 py-[12px] rounded cursor-pointer  "
+                >
                   PROCEED TO PAYMENT
                 </button>
               </div>

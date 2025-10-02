@@ -13,7 +13,7 @@ function Footer(){
               {/* <img src={assets.logo} alt="" /> */}
               <img
                 className="w-[70px]"
-                src="../public/tastyhub1.png"
+                src="/tastyhub1.png"
                 alt="Logo name"
               />
               <p>
