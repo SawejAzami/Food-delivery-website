@@ -5,9 +5,9 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 
 function List(){
-    // const url="http://localhost:4000"
+    const url="http://localhost:4000"
     
-    const url = "https://food-delivery-website-pp1o.onrender.com";
+    // const url = "https://food-delivery-website-pp1o.onrender.com";
     const [list,setList]=useState([])
     const fetchList=async()=>{
         const response=await axios.get(`${url}/api/food/list`);
@@ -52,15 +52,18 @@ function List(){
                 >
                   <img
                     className="w-[50px]"
-                    src={`${url}/image/` + item.image}
+                    src={ item.image}
                     alt=""
                   />
                   <p>{item.name}</p>
                   <p>{item.category}</p>
-                  <p>${item.price}</p>
-                  <p 
-                  onClick={()=>removeFood(item._id)}
-                  className="cursor-pointer">x</p>
+                  <p>₹{item.price}</p>
+                  <p
+                    onClick={() => removeFood(item._id)}
+                    className="cursor-pointer"
+                  >
+                    x
+                  </p>
                 </div>
               );
             })}

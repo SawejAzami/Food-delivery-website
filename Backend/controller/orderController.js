@@ -9,7 +9,7 @@ import Stripe from "stripe"
 const placeOrder=async(req,res)=>{
 
     // const fronted_url = "http://localhost:5173";
-    // console.log(req.body)
+    console.log(req.body)
 
     try {
         const newOrder=new Order({

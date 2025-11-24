@@ -12,9 +12,9 @@ function Add(){
         price:"",
         category:"Salad"
     })
-    // const url="http://localhost:4000"
+    const url="http://localhost:4000"
     
-    const url = "https://food-delivery-website-pp1o.onrender.com";
+    // const url = "https://food-delivery-website-pp1o.onrender.com";
     
     const onchangeHandle=(e)=>{
         const name=e.target.name;
@@ -47,7 +47,10 @@ function Add(){
     return (
       <>
         <div className="w-[70%] ml-[25px] mt-[50px] text-[#6d6d6d] text-[16px]">
-          <form onSubmit={onSubmitHandler} className=" flex flex-col gap-[10px] ">
+          <form
+            onSubmit={onSubmitHandler}
+            className=" flex flex-col gap-[10px] "
+          >
             <div className="   flex flex-col gap-[10px] ">
               <p>Upload Image</p>
               <label htmlFor="image">
@@ -93,7 +96,6 @@ function Add(){
               <div className="category  flex flex-col gap-[10px] ">
                 <p>Product category</p>
                 <select
-                 
                   onChange={onchangeHandle}
                   className="w-[120px] border p-[10px] "
                   name="category"
@@ -103,7 +105,7 @@ function Add(){
                   <option value="Deserts">Deserts</option>
                   <option value="Sandwich">Sandwich</option>
                   <option value="Cake">Cake</option>
-                  <option value="Pure veg">Pure</option>
+                  <option value="Pure veg">Pure veg</option>
                   <option value="Pasta">Pasta</option>
                   <option value="Noodles">Noodles</option>
                 </select>
@@ -116,7 +118,7 @@ function Add(){
                   className="outline-none border p-2"
                   type="number"
                   name="price"
-                  placeholder="$20"
+                  placeholder="₹20"
                 />
               </div>
             </div>

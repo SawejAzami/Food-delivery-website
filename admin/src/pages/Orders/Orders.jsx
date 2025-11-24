@@ -6,9 +6,9 @@ import { useEffect } from "react";
 import { assets } from "../../assets/assets";
 
 function Orders(){
-    // const url="http://localhost:4000"
+    const url="http://localhost:4000"
     
-    const url = "https://food-delivery-website-pp1o.onrender.com";
+    // const url = "https://food-delivery-website-pp1o.onrender.com";
     const [orders,setOrders]=useState([]);
     const fetchAllOrders=async()=>{
         const response=await axios.get(url+"/api/order/list")
@@ -70,7 +70,7 @@ function Orders(){
 
                   <p className="orderitemphone">{order.address.phone}</p>
                   <p className="">items: {order.items.length}</p>
-                  <p className="">${order.amount}</p>
+                  <p className="">₹{order.amount}</p>
                   <select
                     className="bg-[#ffe8e4] border border-orange-600 w-30
                   p-2 outline-none "
