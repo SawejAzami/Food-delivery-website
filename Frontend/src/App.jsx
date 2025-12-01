@@ -9,7 +9,7 @@ import LoginPopup from "./components/LoginPopup/LoginPopup"
 import Verify from "./pages/verify/Verify"
 import MyOrders from "./pages/MyOrders/MyOrders"
 import Profile from "./components/Profile/Profile"
-
+import { Toaster } from "react-hot-toast";
 function App() {
   const [showLogin,setShowLogin]=useState(false)
     return (
@@ -22,9 +22,10 @@ function App() {
           <Route path="/order" element={<PlaceOrder />} />
           <Route path="/verify" element={<Verify />} />
           <Route path="/myorders" element={<MyOrders />} />
-          <Route path="/profile" element={<Profile />} />
+          {/* <Route path="/profile" element={<Profile />} /> */}
         </Routes>
         <Footer />
+        <Toaster position="top-right" reverseOrder={false} />
       </>
     );
 }

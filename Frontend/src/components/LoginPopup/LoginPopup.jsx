@@ -133,7 +133,8 @@ import React, { useContext, useState, useEffect, useRef } from "react";
 import { assets } from "../../assets/assets";
 import { storeContex } from "../../Context/StoreContextProvider";
 import axios from "axios";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 /**
  * LoginPopup - improved
