@@ -133,6 +133,7 @@ import React, { useContext, useState, useEffect, useRef } from "react";
 import { assets } from "../../assets/assets";
 import { storeContex } from "../../Context/StoreContextProvider";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 /**
  * LoginPopup - improved
@@ -191,8 +192,10 @@ function LoginPopup({ setShowLogin }) {
         setToken(token);
         localStorage.setItem("token", token);
         setShowLogin(false);
+        toast.success(response?.data?.message || "User created successfully.");
       } else {
         setError(response?.data?.message || "Authentication failed.");
+        toast.success(response?.data?.message || "User not  created successfully.");
       }
     } catch (err) {
       console.error(err);

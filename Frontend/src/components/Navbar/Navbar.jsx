@@ -282,6 +282,20 @@ function Navbar({ setShowLogin }) {
                 <ul className="absolute right-0 mt-2 w-44 bg-white/6 backdrop-blur-sm rounded-md shadow-lg py-2 z-50">
                   <li
                     onClick={() => {
+                      navigate("/profile");
+                      setProfileOpen(false);
+                    }}
+                    className="px-4 py-2 text-sm text-gray-100 hover:bg-white/10 cursor-pointer flex items-center gap-2"
+                  >
+                    <img
+                      src={assets.profile_icon}
+                      alt="profile"
+                      className="w-4 h-4"
+                    />
+                    Profile
+                  </li>
+                  <li
+                    onClick={() => {
                       navigate("/myorders");
                       setProfileOpen(false);
                     }}
@@ -303,8 +317,6 @@ function Navbar({ setShowLogin }) {
                       src={assets.logout_icon}
                       alt="logout"
                       className="w-4 h-4"
-                      // onClick={() => setProfileOpen((s) => !s)}
-                      // onClick={() => setShowLogin(true)}
                     />
                     Logout
                   </li>
@@ -312,16 +324,6 @@ function Navbar({ setShowLogin }) {
               )}
             </div>
           )}
-
-          {/* Mobile compact sign-in / menu button */}
-          {/* <div className="md:hidden flex items-center gap-2">
-            <button
-              onClick={() => setShowLogin(true)}
-              className="text-sm text-gray-200 px-2 py-1"
-            >
-              Sign in
-            </button>
-          </div> */}
         </div>
       </div>
     </header>

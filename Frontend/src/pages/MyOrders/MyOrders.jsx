@@ -76,11 +76,7 @@ import { storeContex } from "../../Context/StoreContextProvider";
 import axios from "axios";
 import { assets } from "../../assets/assets";
 
-/**
- * MyOrders - improved UI + behavior
- * - Uses local uploaded fallback image at /mnt/data/ca0e725e-e555-4c35-9ebe-b93b9ce48d7a.png
- * - Matches dark gradient theme
- */
+
 const MyOrders = () => {
   const { url, token } = useContext(storeContex);
   const [orders, setOrders] = useState([]);

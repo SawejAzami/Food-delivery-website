@@ -2,7 +2,9 @@ import {User} from "../models/userModel.js"
 import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
 import validator from "validator"
-
+import sendMail from "../NodeMailer/sendMail.js"
+import dotenv from "dotenv";
+dotenv.config();
 
 // login user
 const loginUser=async(req,res)=>{
@@ -23,6 +25,13 @@ const loginUser=async(req,res)=>{
                message: "Password is not correct",
              });
         }
+        if(!user.isVerified){
+              return res.json({
+                success: false,
+                message: "Email is not verified. Please verify your email.",
+              });
+        }
+
         const token=createToken(user._id);
          return res.json({
            success: true,
@@ -49,45 +58,54 @@ const createToken=(id)=>{
 const registerUser=async(req,res)=>{
     const {name,email,password}=req.body;
     try {
-        // checking user already exist
-        const exist=await User.findOne({email})
-        if(exist){
-            return res.json({
-                success:false,
-                message:"User already exist"
-            })
-        }
-
-        // validate email format and strong password
-        if(!validator.isEmail(email)){
-            return res.json({
-                success:false,
-                message:"Please enter valid email"
-            })
-        }
-        if(password.length<8){
-             return res.json({
-               success: false,
-               message: "Please enter strong password",
-             });
-        }
-        // hashing user password
-        const salt=await bcrypt.genSalt(10)
-        const hashedPassword=await bcrypt.hash(password,salt)
-
-        const newUser=new User({
-            name:name,
-            email:email,
-            password:hashedPassword,
-        })
-       const user= await newUser.save()
-        const token=createToken(user._id)
+      // checking user already exist
+      const exist = await User.findOne({ email });
+      if (exist) {
         return res.json({
-          success: true,
-          message: "User registered successfully",
-          token
+          success: false,
+          message: "User already exist",
         });
+      }
 
+      // validate email format and strong password
+      if (!validator.isEmail(email)) {
+        return res.json({
+          success: false,
+          message: "Please enter valid email",
+        });
+      }
+      if (password.length < 8) {
+        return res.json({
+          success: false,
+          message: "Please enter strong password",
+        });
+      }
+      if (name.length < 8) {
+        return res.json({
+          success: false,
+          message: "Please enter a valid name",
+        });
+      }
+      // hashing user password
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(password, salt);
+
+      const newUser = new User({
+        name: name,
+        email: email,
+        password: hashedPassword,
+      });
+      const user = await newUser.save();
+      const token = createToken(user._id);
+      // sending email for verification
+      const result=await sendMail(email,token);
+      console.log(result)
+
+      return res.json({
+        success: true,
+        message: "User created. Verification email sent.",
+        preview: result.previewUrl,
+      });
     } catch (error) {
         console.log(error)
         return res.json({
@@ -97,7 +115,35 @@ const registerUser=async(req,res)=>{
     }
 }
 
+const verify= async (req, res) => {
+
+  try {
+    const { token } = req.query;
+    if (!token) return res.status(400).send("Missing token");
+
+    let payload;
+    try {
+      payload = jwt.verify(token, process.env.JWT_SECRET);
+    } catch (err) {
+      return res.status(400).send("Invalid or expired token");
+    }
+
+    const user = await User.findById(payload.id);
+    if (!user) return res.status(404).send("User not found");
+
+    if (user.isVerified) return res.send("Email already verified");
+
+    user.isVerified = true;
+    await user.save();
+
+    return res.send("Email verified successfully. You can now login.");
+  } catch (err) {
+    console.error(err);
+    return res.status(500).send("Server error");
+  }
+
+};
 
 
 
-export {loginUser,registerUser}
+export { loginUser, registerUser, verify };

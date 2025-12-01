@@ -101,9 +101,9 @@ import { assets } from "../../assets/assets";
 
 
 function Orders() {
-  // const API_BASE = "http://localhost:4000"; // change to production base when ready
+  const API_BASE = "http://localhost:4000"; // change to production base when ready
   
-  const API_BASE = "https://food-delivery-website-pp1o.onrender.com";
+  // const API_BASE = "https://food-delivery-website-pp1o.onrender.com";
   const FALLBACK_IMAGE = "/mnt/data/ca0e725e-e555-4c35-9ebe-b93b9ce48d7a.png";
 
   const [orders, setOrders] = useState([]);
@@ -177,7 +177,7 @@ function Orders() {
   };
 
   return (
-    <div className="min-h-screen py-12 bg-gradient-to-br from-slate-900 via-indigo-900 to-purple-800 text-gray-100">
+    <div className="w-[100%] py-12 bg-gradient-to-br from-slate-900 via-indigo-900 to-purple-800 text-gray-100">
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-2xl font-bold">Orders</h1>

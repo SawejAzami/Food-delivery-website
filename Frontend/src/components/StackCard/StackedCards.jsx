@@ -26,9 +26,8 @@ const StackedCards = () => {
       <div className="relative bg-white rounded-3xl shadow-2xl p-6 h-[350px]">
         <h2 className="text-xl font-bold mb-4">Main Card Content</h2>
 
-        <p className="text-gray-600">
-          This is the main card. You can put images, menu items, food cards, or
-          anything here.
+        <p className="text-gray-600 flex justify-center items-center ">
+          <img src="/photo.webp" alt="TastyHub logo" className=" rounded-b-full" />
         </p>
       </div>
     </div>
