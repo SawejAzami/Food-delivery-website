@@ -101,9 +101,9 @@ import { assets } from "../../assets/assets";
 
 
 function Orders() {
-  const API_BASE = "http://localhost:4000"; // change to production base when ready
+  // const API_BASE = "http://localhost:4000"; // change to production base when ready
   
-  // const API_BASE = "https://food-delivery-website-pp1o.onrender.com";
+  const API_BASE = "https://food-delivery-website-pp1o.onrender.com";
   const FALLBACK_IMAGE = "/mnt/data/ca0e725e-e555-4c35-9ebe-b93b9ce48d7a.png";
 
   const [orders, setOrders] = useState([]);
