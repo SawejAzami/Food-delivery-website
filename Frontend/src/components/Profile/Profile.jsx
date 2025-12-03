@@ -1,18 +1,82 @@
 
 
-import React from "react";
 
+import React, { useContext, useState } from "react";
+import { storeContex } from "../../Context/StoreContextProvider";
+import axios from "axios";
+import { toast } from "react-hot-toast";
 const Profile = () => {
+
+  const { url } = useContext(storeContex);
+  // const [email,setEmail]=useState("");
+  const [data, setData] = useState({ OTP: "", email: "", password: "" });
+  const [token, setToken] = useState(false);
+
+  const onChangeHandler = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const verify=async(e)=>{
+    e.preventDefault()
+    console.log(data)
+    let response;
+    try {
+     response = await axios.post(`${url}/api/user/generateotp`, data);
+     console.log(response)
+      toast.success(response.data.message)
+    } catch (error) {
+      toast.error(response.data.message)
+    }
+  }
+
   return (
     <div className="w-[100%] flex justify-center items-center gap-2 bg-gradient-to-br from-purple-800 via-indigo-900 to-slate-900 text-gray-100   p-6 shadow-2xl ring-1 ring-white/6">
-      <div className="flex flex-col items-center justify-center gap-4  p-10 rounded-3xl shadow-2xl ring-1 ring-black/10  ">
-        <h1>Name: John Doe</h1>
-        <h1>Email_ID:azami@gmail.com</h1>
-      </div>
-      <div className="flex flex-col items-center justify-center gap-4  p-10 rounded-3xl shadow-2xl ring-1 ring-black/10  ">
-        <input type="text" />
-        <button>Change Password</button>
-      </div>
+      {!token && (
+        <div className="w-[50%] flex flex-col items-center justify-center gap-4  p-10 rounded-3xl shadow-2xl ring-1 ring-black/10  ">
+          <form action="" onSubmit={verify} className="w-full">
+            
+            <input
+              name="email"
+              value={data.email}
+              onChange={onChangeHandler}
+              placeholder="Enter your email"
+              className="w-full mb-5 rounded-md px-3 py-2 bg-white/6 border border-white/8 placeholder:text-gray-300 outline-none"
+              required
+            />
+            <button type="submit" className="p-2 rounded-2xl bg-indigo-800">
+              Generate OTP
+            </button>
+          </form>
+        </div>
+      )}
+      {token && (
+        <div className="flex flex-col items-center justify-center gap-4  p-10 rounded-3xl shadow-2xl ring-1 ring-black/10 ">
+          <form action="" onSubmit={verify}>
+            <input
+              type="password"
+              name="password"
+              value={data.password}
+              onChange={onChangeHandler}
+              placeholder="Enter your Password"
+              className="w-full rounded-md px-3 py-2 mb-5 bg-white/6 border border-white/8 placeholder:text-gray-300 outline-none"
+              required
+            />
+            <input
+              name="OTP"
+              value={data.OTP}
+              onChange={onChangeHandler}
+              placeholder="Enter OTP"
+              className="w-full rounded-md mb-5 px-3 py-2 bg-white/6 border border-white/8 placeholder:text-gray-300 outline-none"
+              required
+            />
+            <button type="submit" className="p-2 rounded-2xl bg-indigo-800">
+              Change Password
+            </button>
+          </form>
+        </div>
+      )}
     </div>
   );
 

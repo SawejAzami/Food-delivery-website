@@ -22,7 +22,7 @@ function App() {
           <Route path="/order" element={<PlaceOrder />} />
           <Route path="/verify" element={<Verify />} />
           <Route path="/myorders" element={<MyOrders />} />
-          {/* <Route path="/profile" element={<Profile />} /> */}
+          <Route path="/profile" element={<Profile />} />
         </Routes>
         <Footer />
         <Toaster position="top-right" reverseOrder={false} />

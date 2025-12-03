@@ -23,6 +23,9 @@ const userSchema = new mongoose.Schema(
       type: Object,
       default: {},
     },
+    OTP:{
+      type:Number,
+    }
   },
   { minimize: false }
 );

@@ -6,11 +6,10 @@ const baseUrl = `${process.env.BASE_URL}/api/user`;
 
 const mailjet = Mailjet.apiConnect(process.env.API_KEY, process.env.SECRET_KEY);
 
-async function sendMail(email, token) {
+async function sendMail(email, token,OTP=null) {
   const verifyUrl = `${baseUrl}/verify?token=${encodeURIComponent(token)}`;
-
   try {
-    const { body: result } = await mailjet
+     const result = await mailjet
       .post("send", { version: "v3.1" })
       .request({
         Messages: [
@@ -20,8 +19,8 @@ async function sendMail(email, token) {
               Name: "TestyHub",
             },
             To: [{ Email: email }],
-            Subject: "Verify your email",
-            HTMLPart: `
+            Subject: "Verify your email by OTP or Link",
+            HTMLPart:OTP ? `<h1> ${OTP} <h1/>` :  `
               <p>Thanks for registering.</p>
               <p>Please click the link below to verify your email address:</p>
               <a href="${verifyUrl}">${verifyUrl}</a>
@@ -29,8 +28,6 @@ async function sendMail(email, token) {
           },
         ],
       });
-
-    return result;
   } catch (err) {
     console.error("Mailjet Error:", err?.response?.data || err);
     throw err;

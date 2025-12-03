@@ -130,6 +130,7 @@
 // ***********  Updated Code  ***********
 
 import React, { useContext, useState, useEffect, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { assets } from "../../assets/assets";
 import { storeContex } from "../../Context/StoreContextProvider";
 import axios from "axios";
@@ -173,6 +174,9 @@ function LoginPopup({ setShowLogin }) {
     setData((prev) => ({ ...prev, [name]: value }));
   };
 
+   
+
+
   const onLogin = async (e) => {
     e.preventDefault();
     setError("");
@@ -180,6 +184,8 @@ function LoginPopup({ setShowLogin }) {
     if (!data.email || !data.password || (mode === "Sign Up" && !data.name)) {
       setError("Please fill required fields.");
       return;
+      const response = await axios.post(url + endpoint, data);
+
     }
 
     setLoading(true);
@@ -340,20 +346,17 @@ function LoginPopup({ setShowLogin }) {
               : "Sign Up"}
           </button>
 
-          <button
-            type="button"
-            onClick={() => {
-              // guest quick demo login (optional)
-              setData({
-                email: "demo@user.com",
-                password: "demopassword",
-                name: "",
-              });
-            }}
-            className="px-3 py-2 rounded-lg bg-white/6 text-white hover:bg-white/10 transition"
-          >
-            Demo
-          </button>
+          <Link to="/profile">
+           
+            <button
+              type="button"
+              onClick={() => setShowLogin(false)}
+              aria-label="Close"
+              className="px-3 py-2 rounded-lg bg-white/6 text-white hover:bg-white/10 transition"
+            >
+              Forget Password!
+            </button>
+          </Link>
         </div>
 
         <footer className="mt-4 text-sm text-gray-400">

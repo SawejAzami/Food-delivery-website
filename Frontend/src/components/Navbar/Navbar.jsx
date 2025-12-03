@@ -140,7 +140,6 @@
 // }
 // export default Navbar
 
-
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { assets } from "../../assets/assets";
 import { Link, useNavigate } from "react-router-dom";
@@ -152,7 +151,6 @@ function Navbar({ setShowLogin }) {
   const [profileOpen, setProfileOpen] = useState(false);
   const navigate = useNavigate();
   const profileRef = useRef(null);
-
 
   const logout = async () => {
     localStorage.removeItem("token");
@@ -280,7 +278,7 @@ function Navbar({ setShowLogin }) {
               {/* dropdown */}
               {profileOpen && (
                 <ul className="absolute right-0 mt-2 w-44 bg-white/6 backdrop-blur-sm rounded-md shadow-lg py-2 z-50">
-                  <li
+                  {/* <li
                     onClick={() => {
                       navigate("/profile");
                       setProfileOpen(false);
@@ -293,7 +291,7 @@ function Navbar({ setShowLogin }) {
                       className="w-4 h-4"
                     />
                     Profile
-                  </li>
+                  </li> */}
                   <li
                     onClick={() => {
                       navigate("/myorders");
@@ -331,5 +329,3 @@ function Navbar({ setShowLogin }) {
 }
 
 export default Navbar;
-
-
