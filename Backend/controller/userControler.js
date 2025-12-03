@@ -125,7 +125,7 @@ const verify= async (req, res) => {
     try {
       payload = jwt.verify(token, process.env.JWT_SECRET);
     } catch (err) {
-      return res.status(400).send(` Invalid or expired token   `);
+      return res.status(400).send(` Invalid or expired token  : ${err.message} `);
     }
 
     const user = await User.findById(payload.id);
