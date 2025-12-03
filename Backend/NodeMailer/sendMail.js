@@ -6,7 +6,7 @@ const baseUrl = `${process.env.BASE_URL}/api/user`;
 
 const mailjet = Mailjet.apiConnect(process.env.API_KEY, process.env.SECRET_KEY);
 
-async function sendMail(email, token,OTP=null) {
+async function sendMail(email, token ,OTP=null) {
   const verifyUrl = `${baseUrl}/verify?token=${encodeURIComponent(token)}`;
   try {
      const result = await mailjet
@@ -20,7 +20,7 @@ async function sendMail(email, token,OTP=null) {
             },
             To: [{ Email: email }],
             Subject: "Verify your email by OTP or Link",
-            HTMLPart:OTP ? `<h1> ${OTP} <h1/>` :  `
+            HTMLPart:OTP?`<h1>${OTP}<h1/>`: `
               <p>Thanks for registering.</p>
               <p>Please click the link below to verify your email address:</p>
               <a href="${verifyUrl}">${verifyUrl}</a>
