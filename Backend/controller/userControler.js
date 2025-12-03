@@ -99,12 +99,12 @@ const registerUser=async(req,res)=>{
       const token = createToken(user._id);
       // sending email for verification
       const result=await sendMail(email,token);
-      console.log(result)
+      // console.log(result)
 
       return res.json({
         success: true,
         message: "User created. Verification email sent.",
-        preview: result.previewUrl,
+        
       });
     } catch (error) {
         console.log(error)
@@ -125,7 +125,7 @@ const verify= async (req, res) => {
     try {
       payload = jwt.verify(token, process.env.JWT_SECRET);
     } catch (err) {
-      return res.status(400).send("Invalid or expired token");
+      return res.status(400).send(` Invalid or expired token   `);
     }
 
     const user = await User.findById(payload.id);
@@ -144,6 +144,41 @@ const verify= async (req, res) => {
 
 };
 
+const generateOTP = async (req, res) => {
+  const { email } = req.body;
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.json({
+        success: false,
+        message: "User does not exist",
+      });
+    }
+
+    // console.log("User found for password change:", user);
+    // sending email for verification
+
+    const OTP = 234567; // generate OTP here
+    const token = createToken(user._id, OTP);
+    // sending email for verification
+    await sendMail(email, token, OTP);
+    user.OTP = OTP;
+    await user.save();
+    console.log(user);
+    return res.json({
+      success: true,
+      message: "Password change OTP sent to your email.",
+      token,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.json({
+      success: false,
+      message: "Error, Password not changed",
+    });
+  }
+};
 
 
-export { loginUser, registerUser, verify };
+
+export { loginUser, registerUser, verify, generateOTP };
