@@ -30,7 +30,7 @@ const Profile = () => {
     //  console.log(token,"  token")
       toast.success(response.data.message)
     } catch (error) {
-      toast.error(response.data.message)
+     toast.error(error.response?.data?.message || "Something went wrong");
     }
   }
   const changePassword = async (e) => {
@@ -45,7 +45,7 @@ const Profile = () => {
       }
       toast.success(response.data.message);
     } catch (error) {
-      toast.error(response.data.message);
+     toast.error(error.response?.data?.message || "Something went wrong");
     }
   };
 
