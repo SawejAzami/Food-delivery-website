@@ -21,13 +21,13 @@ const Profile = () => {
 
   const verify=async(e)=>{
     e.preventDefault()
-    console.log(data)
+    // console.log(data)
     let response;
     try {
      response = await axios.post(`${url}/api/user/generateotp`, data);
-     console.log("OTP response",response)
+    //  console.log("OTP response",response)
      setToken(response.data.token)
-     console.log(token,"  token")
+    //  console.log(token,"  token")
       toast.success(response.data.message)
     } catch (error) {
       toast.error(response.data.message)
@@ -35,7 +35,7 @@ const Profile = () => {
   }
   const changePassword = async (e) => {
     e.preventDefault();
-    console.log(data);
+    // console.log(data);
     let response;
     try {
       response = await axios.post(`${url}/api/user/changepassword`, data);
@@ -43,8 +43,6 @@ const Profile = () => {
       if(response.data.success){
         navigate("/")
       }
-      // setToken(response.data.token);
-      // console.log(token, "  token");
       toast.success(response.data.message);
     } catch (error) {
       toast.error(response.data.message);
