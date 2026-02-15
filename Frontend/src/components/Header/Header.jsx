@@ -40,7 +40,7 @@
 
 import React from "react";
 import StackedCards from "../StackCard/StackedCards";
-
+import { Link } from "react-router-dom";
 function Header() {
   return (
     <section
@@ -65,10 +65,10 @@ function Header() {
 
           <div className="mt-8 flex flex-wrap gap-4">
             <button className="px-6 py-3 rounded-lg bg-amber-400 text-slate-900 font-semibold shadow-lg hover:scale-[1.02] transform transition">
-              Explore Menu
+              <a href="#menu">Explore Menu</a>
             </button>
             <button className="px-6 py-3 rounded-lg border border-white/20 text-gray-100 font-semibold hover:bg-white/10 transition">
-              Track Order
+              <Link to="/myorders"> Track Order</Link>
             </button>
           </div>
 

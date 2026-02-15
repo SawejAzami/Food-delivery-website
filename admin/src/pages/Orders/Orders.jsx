@@ -7,7 +7,7 @@
 
 // function Orders(){
 //     const url="http://localhost:4000"
-    
+
 //     // const url = "https://food-delivery-website-pp1o.onrender.com";
 //     const [orders,setOrders]=useState([]);
 //     const fetchAllOrders=async()=>{
@@ -87,10 +87,9 @@
 //           </div>
 //         </div>
 //       </>
-//     ); 
+//     );
 // }
 // export default Orders
-
 
 // ************* Upgraded Code *************
 
@@ -99,10 +98,9 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { assets } from "../../assets/assets";
 
-
 function Orders() {
   // const API_BASE = "http://localhost:4000"; // change to production base when ready
-  
+
   const API_BASE = "https://food-delivery-website-pp1o.onrender.com";
   const FALLBACK_IMAGE = "/mnt/data/ca0e725e-e555-4c35-9ebe-b93b9ce48d7a.png";
 
@@ -285,12 +283,12 @@ function Orders() {
                         className="bg-purple-400 text-sm rounded-md p-1 outline-none "
                       >
                         <option value="Food Processing">Food Processing</option>
-                        <option value="Out of delivery">Out of delivery</option>
+                        <option value="Out for delivery">
+                          Out for delivery
+                        </option>
                         <option value="Delivered">Delivered</option>
                         <option value="Cancelled">Cancelled</option>
                       </select>
-
-                     
                     </div>
                   </div>
                 </div>

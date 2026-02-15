@@ -9,6 +9,7 @@ dotenv.config();
 // login user
 const loginUser=async(req,res)=>{
     const {email,password}=req.body
+    console.log(email,"backend")
     try {
         const user=await User.findOne({email})
         if(!user){
@@ -146,8 +147,10 @@ const verify= async (req, res) => {
 
 const generateOTP = async (req, res) => {
   const { email } = req.body;
+  
   try {
     const user = await User.findOne({ email });
+    // console.log(user)
     if (!user) {
       return res.json({
         success: false,
@@ -164,7 +167,7 @@ const generateOTP = async (req, res) => {
     await sendMail(email, token, OTP);
     user.OTP = OTP;
     await user.save();
-    console.log(user);
+    // console.log(user);
     return res.json({
       success: true,
       message: "Password change OTP sent to your email.",
@@ -178,7 +181,66 @@ const generateOTP = async (req, res) => {
     });
   }
 };
+const changePassword = async (req, res) => {
+  const { email,password,OTP } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+    // console.log(user)
+    if (!user) {
+      return res.json({
+        success: false,
+        message: "User does not exist",
+      });
+    }
+
+    if (user.OTP != OTP) {
+      return res.json({
+        success: false,
+        message: "OTP does not match,Please try again!",
+      });
+    }
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+    // user.OTP = "";
+    // user.password = hashedPassword;
+    // await user.save();
+
+    const newuser=await User.findByIdAndUpdate(user._id, 
+       { password: hashedPassword ,OTP:null},
+    );
+    // console.log(newuser);
+
+    // const newUser = new User({
+    //   password: hashedPassword,
+    //   OTP: "",
+    // });
+    // const user1 = await newUser.save();
+
+    // console.log("User found for password change:", user);
+    // sending email for verification
+
+    // const OTP = 234567; // generate OTP here
+    // const token = createToken(user._id, OTP);
+    // sending email for verification
+    // await sendMail(email, token, OTP);
+    // user.OTP = OTP;
+    // await user.save();
+    // console.log(user);
+    return res.json({
+      success: true,
+      message: "Your password chenged successfully....",
+      
+    });
+  } catch (error) {
+    console.log(error);
+    return res.json({
+      success: false,
+      message: "Error, Password not changed",
+    });
+  }
+};
 
 
 
-export { loginUser, registerUser, verify, generateOTP };
+export { loginUser, registerUser, verify, generateOTP, changePassword };

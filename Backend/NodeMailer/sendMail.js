@@ -6,7 +6,7 @@ const baseUrl = `${process.env.BASE_URL}/api/user`;
 
 const mailjet = Mailjet.apiConnect(process.env.API_KEY, process.env.SECRET_KEY);
 
-async function sendMail(email, token ,OTP=null) {
+async function sendMail(email, token ,OTP="") {
   const verifyUrl = `${baseUrl}/verify?token=${encodeURIComponent(token)}`;
   try {
      const result = await mailjet
