@@ -58,7 +58,7 @@ app.get("/", (req, res) => {
   res.send("its runnig well");
 });
 app.get("/check", (req, res) => {
-  res.send("Backend updated");
+  res.send("Backend");
 });
 
 

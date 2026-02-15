@@ -30,6 +30,7 @@ const Profile = () => {
     //  console.log(token,"  token")
       toast.success(response.data.message)
     } catch (error) {
+      // console.log(response);
      toast.error(error.response?.data?.message || "Something went wrong");
     }
   }
@@ -45,6 +46,7 @@ const Profile = () => {
       }
       toast.success(response.data.message);
     } catch (error) {
+      // console.log(response)
      toast.error(error.response?.data?.message || "Something went wrong");
     }
   };
