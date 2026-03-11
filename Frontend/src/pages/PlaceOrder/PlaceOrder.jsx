@@ -337,15 +337,18 @@ function PlaceOrder() {
         amount: getCartTotalAmount() + 50, // using 50 as delivery fee
       };
 
-      const response = await axios.post(url + "/api/order/place", orderData, {
+      const response = await axios.post(url + "/api/order/payment", orderData, {
         headers: { token },
       });
 
-      if (response.data.success) {
-        goToOrder(response);
-      } else {
-        setError("Failed to place order. Please try again.");
-      }
+      // console.log(response)
+      window.location.href=response.data.url
+
+      // if (response.data.success) {
+      //   goToOrder(response);
+      // } else {
+      //   setError("Failed to place order. Please try again.");
+      // }
     } catch (err) {
       console.error(err);
       setError(

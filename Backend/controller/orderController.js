@@ -1,6 +1,7 @@
 import { Order } from "../models/orderModel.js";
 import { User } from "../models/userModel.js";
 import Stripe from "stripe"
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 
 
@@ -109,4 +110,63 @@ const updateStatus=async (req,res)=>{
         });
     }
 }
-export { placeOrder, verifyOrder, userOrders, listOrders, updateStatus };
+
+const payment =async (req, res) => {
+  try {
+    const  orderData  = req.body;
+    // console.log(req.body);
+    // console.log(orderData);
+    
+
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ["card"],
+      line_items: [
+        {
+          price_data: {
+            currency: "inr",
+            product_data: {
+              name: "Food Order",
+            },
+            unit_amount: orderData.amount * 100,
+          },
+          quantity: 1,
+        },
+      ],
+
+      mode: "payment",
+      success_url: `${process.env.CLIENT_URL}/success`,
+      cancel_url: `${process.env.CLIENT_URL}/cancel`,
+    });
+    // console.log(session);
+    const newOrder = new Order({
+      userId: req.body.userId,
+      items: req.body.item,
+      amount: req.body.amount,
+      address: req.body.address,
+    });
+
+    await newOrder.save();
+    await User.findByIdAndUpdate(req.body.userId, { cartData: {} });
+
+    res.json({
+      success: true,
+      url: session.url,
+      session,
+    });
+    
+  } catch (error) {
+    res.json({
+      success: false,
+      message: "payment not done",
+    });
+  }
+};
+
+export {
+  placeOrder,
+  verifyOrder,
+  userOrders,
+  listOrders,
+  updateStatus,
+  payment,
+};
