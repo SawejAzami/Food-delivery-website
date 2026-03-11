@@ -134,7 +134,7 @@ const payment =async (req, res) => {
       ],
 
       mode: "payment",
-      success_url: `${process.env.CLIENT_URL}`,
+      success_url: `${process.env.CLIENT_URL}/success`,
       cancel_url: `${process.env.CLIENT_URL}/cancel`,
     });
     // console.log(session);
