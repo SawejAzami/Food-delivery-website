@@ -4,6 +4,7 @@ import ExploreMenu from "../../components/ExploreMenu/ExploreMenu"
 import FoodDisplay from "../../components/FoodDisplay/FoodDisplay"
 import AppDownload from "../../components/Appdownload/Appdownload"
 import Animation from "../../components/Animation/Animation"
+import HangingCard from "../../components/HangingCard/HangingCard"
 function Home(){
     const [category,setCategory]=useState("All")
     return (

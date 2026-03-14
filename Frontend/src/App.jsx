@@ -11,6 +11,7 @@ import MyOrders from "./pages/MyOrders/MyOrders"
 import Profile from "./components/Profile/Profile"
 import { Toaster } from "react-hot-toast";
 import Success from "./components/Success/Success"
+import Cancel from "./components/Cancel/Cancel"
 function App() {
   const [showLogin,setShowLogin]=useState(false)
     return (
@@ -24,8 +25,8 @@ function App() {
           <Route path="/verify" element={<Verify />} />
           <Route path="/myorders" element={<MyOrders />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/success" element={<Success/>} />
-          <Route path="/cancel" element={<Profile />} />
+          <Route path="/success" element={<Success />} />
+          <Route path="/cancel" element={<Cancel />} />
         </Routes>
         <Footer />
         <Toaster position="top-right" reverseOrder={false} />

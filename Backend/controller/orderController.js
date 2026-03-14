@@ -146,7 +146,10 @@ const payment =async (req, res) => {
     });
 
     await newOrder.save();
-    await User.findByIdAndUpdate(req.body.userId, { cartData: {} });
+    await User.findByIdAndUpdate(req.body.userId, {
+      cartData: {},
+      $inc: { numberOfOrder: 1 },
+    });
 
     res.json({
       success: true,

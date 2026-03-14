@@ -37,7 +37,8 @@ const loginUser=async(req,res)=>{
          return res.json({
            success: true,
            message: "User Logged in successfully",
-           token
+           token,
+           number:user.numberOfOrders
          });
 
     } catch (error) {

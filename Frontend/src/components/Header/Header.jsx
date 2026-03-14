@@ -41,13 +41,46 @@
 import React from "react";
 import StackedCards from "../StackCard/StackedCards";
 import { Link } from "react-router-dom";
+import HangingCard from "../HangingCard/HangingCard";
+import { useState } from "react";
+import { useContext } from "react";
+
 function Header() {
+  
+  const [isHang,setIshang]=useState(true)
+
+function hangCard(){
+  setIshang((val)=>!val)
+}
   return (
-    <section
-      className="
-     
-    "
-    >
+    <section>
+      <div className="relative">
+        <div
+          onClick={hangCard}
+          className="absolute left-[92.5%] -top-4 z-20 cursor-pointer
+               w-6 h-6 rounded-full
+               bg-gradient-to-br from-amber-600 to-amber-900
+               shadow-lg shadow-amber-900/50
+               flex items-center justify-center
+               transition-all duration-200
+               hover:scale-110 hover:shadow-xl
+               active:scale-90 active:shadow-inner"
+        >
+          <div className="w-2 h-2 rounded-full bg-white/50"></div>
+        </div>
+      </div>
+
+      <div
+        className={`absolute right-0 z-10 transform transition-all duration-700 ease-out
+    ${
+      isHang
+        ? "translate-y-0 opacity-100"
+        : "-translate-y-16 opacity-0 pointer-events-none"
+    }`}
+      >
+        <HangingCard />
+      </div>
+
       <div className="w-[80%] mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-10">
         {/* LEFT TEXT SIDE */}
         <div>
@@ -72,7 +105,7 @@ function Header() {
             </button>
           </div>
 
-          <div className="mt-8 flex items-center gap-8 text-gray-300">
+          {/* <div className="mt-8 flex items-center gap-8 text-gray-300">
             <div className="text-sm">
               <div className="font-bold text-white text-xl">4.8</div>
               <div className="text-gray-400">Rating</div>
@@ -85,7 +118,7 @@ function Header() {
               <div className="font-bold text-white text-xl">30+</div>
               <div className="text-gray-400">Cities</div>
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* RIGHT — STACKED CARDS */}

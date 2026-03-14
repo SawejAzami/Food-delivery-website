@@ -23,6 +23,10 @@ const userSchema = new mongoose.Schema(
       type: Object,
       default: {},
     },
+    numberOfOrders: {
+      type: Number,
+      default:0
+    },
     OTP:{
       type:Number,
     }

@@ -9,6 +9,7 @@ const StoreContextProvider=(props)=>{
     // const url="http://localhost:4000"
     const url = "https://food-delivery-website-backend-2q5v.onrender.com";
     const [token,setToken]=useState("")
+    const [numberOfOrders, setNumberOfOrders] = useState(0);
     const [food_list,setFood_list]=useState([])
     const addToCart=async(itemId)=>{
         if(!cartItem[itemId]){
@@ -70,6 +71,8 @@ const StoreContextProvider=(props)=>{
       url,
       token,
       setToken,
+      setNumberOfOrders,
+      numberOfOrders
     };
     return (
       <storeContex.Provider value={contextValue}>

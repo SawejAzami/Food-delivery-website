@@ -8,6 +8,7 @@ import Orders from './pages/Orders/Orders';
 
   import { ToastContainer } from "react-toastify";
   import "react-toastify/dist/ReactToastify.css";
+import AddCoupon from './pages/AddCoupon/AddCoupon.jsx';
 
 function App() {
   
@@ -23,6 +24,7 @@ function App() {
           <Route path="/add" element={<Add/>} />
           <Route path="/list" element={<List/>} />
           <Route path="/orders" element={<Orders/>} />
+          <Route path="/addCoupon" element={<AddCoupon/>} />
         </Routes>
       </div>
     </>

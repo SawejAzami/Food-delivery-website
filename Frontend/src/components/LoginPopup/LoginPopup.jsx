@@ -147,7 +147,7 @@ import toast from "react-hot-toast";
  * - Uses uploaded logo at: /mnt/data/b380fb2f-8957-4ada-adcf-9292f7dd3f7e.png
  */
 function LoginPopup({ setShowLogin }) {
-  const { url, setToken } = useContext(storeContex);
+  const { url, setToken, setNumberOfOrders } = useContext(storeContex);
 
   const [mode, setMode] = useState("Login"); // "Login" | "Sign Up"
   const [data, setData] = useState({ name: "", email: "", password: "" });
@@ -199,6 +199,7 @@ function LoginPopup({ setShowLogin }) {
         setToken(token);
         localStorage.setItem("token", token);
         setShowLogin(false);
+        setNumberOfOrders(response.data.number);
         toast.success(response?.data?.message || "User created successfully.");
       } else {
         setError(response?.data?.message || "Authentication failed.");

@@ -46,6 +46,7 @@ import userRouter from "./routes/userRoute.js";
 import "dotenv/config";
 import cartRouter from "./routes/cartRoute.js";
 import orderRouter from "./routes/orderRoute.js";
+import couponRouter from "./routes/couponRoute.js";
 
 // app config
 const app = express();
@@ -53,6 +54,7 @@ const port = process.env.PORT || 4000;
 
 // middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 app.get("/", (req, res) => {
@@ -72,6 +74,7 @@ app.use("/image", express.static("upload"));
 app.use("/api/user", userRouter);
 app.use("/api/cart", cartRouter);
 app.use("/api/order", orderRouter);
+app.use("/api/coupon", couponRouter);
 
 app.listen(port, () => {
   console.log(`server is running on http://localhost:${port}`);

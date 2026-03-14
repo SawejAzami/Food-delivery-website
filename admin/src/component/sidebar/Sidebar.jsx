@@ -60,8 +60,6 @@ function Sidebar() {
     // hide on small screens, sticky on desktop
     <aside className="hidden md:block w-60 min-h-screen sticky top-0 bg-blue-950 text-gray-100 p-6">
       <div className="flex flex-col items-start gap-8">
-        
-
         {/* Nav */}
         <nav
           className="w-full flex flex-col gap-3"
@@ -102,8 +100,18 @@ function Sidebar() {
             <img src={assets.order_icon} alt="Orders" className="w-5 h-5" />
             <span>Orders</span>
           </NavLink>
+          <NavLink
+            to="/addCoupon"
+            className={({ isActive }) =>
+              `${baseClass} ${
+                isActive ? activeClass : "text-gray-200 hover:bg-white/5"
+              }`
+            }
+          >
+            <img src={assets.add_icon} alt="Add" className="w-5 h-5" />
+            <span>Add Coupon</span>
+          </NavLink>
         </nav>
-
       </div>
     </aside>
   );
