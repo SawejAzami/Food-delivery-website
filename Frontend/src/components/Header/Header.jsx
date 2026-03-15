@@ -57,7 +57,7 @@ function hangCard(){
       <div className="relative">
         <div
           onClick={hangCard}
-          className="absolute left-[92.5%] -top-4 z-20 cursor-pointer
+          className="absolute left-[91.5%] -top-4 z-20 cursor-pointer
                w-6 h-6 rounded-full
                bg-gradient-to-br from-amber-600 to-amber-900
                shadow-lg shadow-amber-900/50
@@ -71,7 +71,7 @@ function hangCard(){
       </div>
 
       <div
-        className={`absolute right-0 z-10 transform transition-all duration-700 ease-out
+        className={`absolute right-3 z-10 transform transition-all duration-700 ease-out
     ${
       isHang
         ? "translate-y-0 opacity-100"
