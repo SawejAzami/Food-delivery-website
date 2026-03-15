@@ -122,7 +122,7 @@ const verify= async (req, res) => {
   try {
     const { token } = req.query;
     if (!token) return res.status(400).send("Missing token");
-
+    console.log(token)
     let payload;
     try {
       payload = jwt.verify(token, process.env.JWT_SECRET);

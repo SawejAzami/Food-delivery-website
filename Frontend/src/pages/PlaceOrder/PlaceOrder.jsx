@@ -341,7 +341,7 @@ function PlaceOrder() {
         headers: { token },
       });
 
-      // console.log(response)
+      console.log(response)
       window.location.href=response.data.url
 
       // if (response.data.success) {
