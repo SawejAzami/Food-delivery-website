@@ -12,6 +12,8 @@ import Profile from "./components/Profile/Profile"
 import { Toaster } from "react-hot-toast";
 import Success from "./components/Success/Success"
 import Cancel from "./components/Cancel/Cancel"
+import EmailVerify from "./components/EmailVerify/EmailVerify"
+import PiChart from "./components/PiChart/PiChart"
 function App() {
   const [showLogin,setShowLogin]=useState(false)
     return (
@@ -27,6 +29,8 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/success" element={<Success />} />
           <Route path="/cancel" element={<Cancel />} />
+          <Route path="/emailVerify" element={<EmailVerify />} />
+          <Route path="/pichart" element={<PiChart/>} />
         </Routes>
         <Footer />
         <Toaster position="top-right" reverseOrder={false} />

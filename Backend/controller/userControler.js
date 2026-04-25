@@ -116,11 +116,38 @@ const registerUser=async(req,res)=>{
         });
     }
 }
+const emailVerify=async (req,res)=>{
+  const { email } = req.body;
+  try {
+    const user = await User.findOne({ email });
+
+    if (!validator.isEmail(email)) {
+      return res.json({
+        success: false,
+        message: "Please enter valid email",
+      });
+    }
+    const token = createToken(user._id);
+    await sendMail(email, token);
+
+    return res.json({
+      success: true,
+      message: " Verification email sent again.",
+    });
+  } catch (error) {
+    console.log(error);
+    return res.json({
+      success: false,
+      message: "Error",
+    });
+  }
+}
 
 const verify= async (req, res) => {
 
   try {
     const { token } = req.query;
+    console.log(token)
     if (!token) return res.status(400).send("Missing token");
     console.log(token)
     let payload;
@@ -159,8 +186,6 @@ const generateOTP = async (req, res) => {
       });
     }
 
-    // console.log("User found for password change:", user);
-    // sending email for verification
 
     const OTP = 234567; // generate OTP here
     const token = createToken(user._id, OTP);
@@ -182,6 +207,7 @@ const generateOTP = async (req, res) => {
     });
   }
 };
+
 const changePassword = async (req, res) => {
   const { email,password,OTP } = req.body;
 
@@ -244,4 +270,11 @@ const changePassword = async (req, res) => {
 
 
 
-export { loginUser, registerUser, verify, generateOTP, changePassword };
+export {
+  loginUser,
+  registerUser,
+  generateOTP,
+  changePassword,
+  emailVerify,
+  verify,
+};

@@ -137,7 +137,7 @@ const payment =async (req, res) => {
       success_url: `${process.env.CLIENT_URL}/success`,
       cancel_url: `${process.env.CLIENT_URL}/cancel`,
     });
-    // console.log(session);
+    console.log(session);
     const newOrder = new Order({
       userId: req.body.userId,
       items: req.body.item,
